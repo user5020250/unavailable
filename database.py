@@ -1,6 +1,13 @@
-import aiosqlite
+import os
+from pathlib import Path
 
-from config import DATABASE_PATH
+BASE_DIR = Path(__file__).resolve().parent
+
+# Railway Volume
+DATA_DIR = Path(os.getenv("DATA_DIR", BASE_DIR / "data"))
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+DATABASE_PATH = DATA_DIR / "economy.db"
 
 
 CREATE_TABLES = [
